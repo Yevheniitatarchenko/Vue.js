@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/
+	bootstrap/4.0.0/css/bootstrap.min.css" integrity="
+	sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	crossorigin="anonymous">
+	<script src="https://unpkg.com/vue"></script>
+	<body>
+
+		<div class="app" >
+			<div class="form_color">
+				<form class="form" @submit.prevent="formSubmited = true" ><!-- v-if="!formSubmited" -->
+
+					<div class="form-group">
+						<button class="btn upload_image" @click="onPickFile">Upload Image</button>
+						<input 
+						type="file"
+						style="display: none"
+						ref="fileInput"
+						accept="image/*"
+						@change="onFilePicked">
+					<div><img :src="imageUrl" height="150"></div>
+				</div>
+
+				<div class="form-group">
+					<label>First Name</label>
+					<input type="text" class="form-control" v-model="firstName">
+				</div>
+				<div class="form-group">
+					<label>Last Name</label>
+					<input type="text" class="form-control"  v-model="lastName">
+				</div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="text" class="form-control" v-model="email">
+				</div>
+				<div class="form-group">
+					<label>Phone</label>
+					<input type="text" class="form-control" v-model="phone">
+				</div>
+				<button class="btn btn_form"  v-on:click = "showdata" :disabled="done < info.length">Send Data</button>
+			</form>
+		</div>
+
+
+		<div class="table_size"><!-- v-else -->
+
+			<input  type="text" class="form-control input_size" placeholder="Search people..." v-model="input">
+			<table class="table table-sm table-hover" >
+				<thead>
+					<tr>
+						<th scope="col">№</th>
+						<th scope="col">Foto</th>
+						<th scope="col">First Name</th>
+						<th scope="col">last Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Remowe</th>
+					</tr>
+				</thead>
+				<transition name="boom">
+					<tbody>
+						<tr v-for="(item, index) in filterArray">
+							<transition-group name="fadeDownBig" tag="ul" class="list-group">
+								<th scope="row">{{ index }}</th>
+								<td><div class="image"><img :src="item.imageUrl" alt=""></div></td>
+								<td>{{ item.firstName }}</td>
+								<td>{{ item.lastName }}</td>
+								<td>{{ item.email }}</td>
+								<td>{{ item.phone }}</td>
+								<td><button class="btn btn_table" @click="deleteInfo(index)">Удалить</button></td>
+							</transition-group>
+						</tr>
+					</tbody>
+				</transition>
+			</table>
+		</div>
+	</div>
+
+	<script>
+		Vue.component('modal', {
+			template: '#modal-template'
+		})
+
+		new Vue({
+			el: '.app',
+			data: {
+				imageUrl: '',
+				firstName: '',
+				lastName: '',
+				email: '',
+				phone: '',
+				info: [],
+				input: '',
+			},
+			methods: {
+				showdata : function() {
+					this.info.push({
+						imageUrl: this.imageUrl,
+						firstName: this.firstName,
+						lastName: this.lastName,
+						email : this.email,
+						phone : this.phone,
+					});
+					this.firstName = "";
+					this.lastName = "";
+					this.email = "";
+					this.phone = "";
+					this.imageUrl = "";
+				},
+				onPickFile () {
+						this.$refs.fileInput.click()
+					},
+					onFilePicked (event) {
+						const files = event.target.files
+						let filename = files[0].name//filename = обьекту по индексу 0 
+						if (filename.lastIndexOf('.') <= 0) {
+							return alert('Please add a valid file!')
+						}
+						const fileReader = new FileReader()
+						fileReader.addEventListener('load', () => {
+							this.imageUrl = fileReader.result
+						})
+						fileReader.readAsDataURL(files[0])
+						this.image = files[0]
+					},
+				deleteInfo(index) {
+					this.info.splice(index, 1);
+				}				
+			},
+			computed: {
+				filterArray: function() {
+					let arrays = this.info,
+					searchString = this.input;
+
+					if (!searchString) {
+						return arrays;
+					}
+
+					arrays = arrays.filter(function(item) {
+						if (item.lastName.indexOf(searchString) !== -1) {
+							return item;
+						}
+					})
+					return arrays;
+
+				}
+			}
+		})
+	</script>
+
+	<style>
+		.app{
+			color: #fff;
+			min-height: 700px;
+		}
+
+		/*.................form.......................*/
+		.form {
+			width: 480px;
+			margin: auto;
+			padding: 40px;
+		}
+
+		.form-control{
+			background-color: #EBEBEB;
+		}
+
+		/*.................btn............................*/
+		.btn_form{
+			color: #fff;
+			background-color: #768AEA;
+			border-color: #768AEA;
+		}
+		.btn_form:hover{
+			opacity: .8;
+			background-color: #768AEA;
+			border-color: #768AEA;
+		}
+		.btn_form:active{
+			opacity: .7;
+			background-color: #768AEA;
+			border-color: #768AEA;
+		}
+
+		.btn_table{
+			color: #fff;
+			background-color: #E77E67;
+			border-color: #E77E67;
+		}
+		.btn_table:hover{
+			opacity: .8;
+			background-color: #E77E67;
+			border-color: #E77E67;
+		}
+		.btn_table:active{
+			opacity: .7;
+			background-color: #E77E67;
+			border-color: #E77E67;
+		}
+
+
+
+		.form_color{
+			background-color: #786EA5;
+		}
+		.input_size{
+			width: 200px;
+		}
+		.table_size{
+			background-color: #EBEBEC;
+			min-height: 248px;
+			padding: 40px 80px;
+			color: #645F6B;
+		}
+		.table{
+			width: 1200px;
+			margin: auto;
+			margin-top: 30px;
+		}
+
+		.image{
+			width: 50px;
+    	height: 50px;
+		}
+		.image img{
+			width: 100%;
+    	height: 100%;
+   		-o-object-fit: cover;
+    	object-fit: cover;
+		}
+
+		.upload_image{
+			color: #24292E;
+			background-color: #CADEF3;
+			border-color: #CADEF3;
+			opacity: .7;
+		}
+		.upload_image:hover{
+			opacity: .8;
+			background-color: #CADEF3;
+			border-color: #CADEF3;
+		}
+		.upload_image:active{
+			opacity: .7;
+			background-color: #CADEF3;
+			border-color: #CADEF3;
+		}
+
+		/*..............animation.................*/
+
+	</style>
+</body>
+</head>
+</html>

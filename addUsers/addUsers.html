@@ -39,7 +39,7 @@
 					<label>Phone</label>
 					<input type="text" class="form-control" v-model="phone">
 				</div>
-				<button class="btn btn_form"  v-on:click = "showdata" :disabled="done < info.length">Send Data</button>
+				<button class="btn btn_form"  v-on:click = "showdata">Send Data</button>
 			</form>
 		</div>
 
@@ -59,30 +59,22 @@
 						<th scope="col">Remowe</th>
 					</tr>
 				</thead>
-				<transition name="boom">
 					<tbody>
 						<tr v-for="(item, index) in filterArray">
-							<transition-group name="fadeDownBig" tag="ul" class="list-group">
-								<th scope="row">{{ index }}</th>
-								<td><div class="image"><img :src="item.imageUrl" alt=""></div></td>
-								<td>{{ item.firstName }}</td>
-								<td>{{ item.lastName }}</td>
-								<td>{{ item.email }}</td>
-								<td>{{ item.phone }}</td>
-								<td><button class="btn btn_table" @click="deleteInfo(index)">Удалить</button></td>
-							</transition-group>
-						</tr>
+						<th scope="row">{{ index }}</th>
+						<td><div class="image"><img :src="item.imageUrl" alt=""></div></td>
+						<td>{{ item.firstName }}</td>
+						<td>{{ item.lastName }}</td>
+						<td>{{ item.email }}</td>
+						<td>{{ item.phone }}</td>
+						<td><button class="btn btn_table" @click="deleteInfo(index)">Удалить</button></td>
+				            </tr>
 					</tbody>
-				</transition>
 			</table>
 		</div>
 	</div>
 
 	<script>
-		Vue.component('modal', {
-			template: '#modal-template'
-		})
-
 		new Vue({
 			el: '.app',
 			data: {

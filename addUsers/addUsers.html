@@ -10,8 +10,7 @@
 
 		<div class="app" >
 			<div class="form_color">
-				<form class="form" @submit.prevent="formSubmited = true" ><!-- v-if="!formSubmited" -->
-
+				<div class="form">
 					<div class="form-group">
 						<button class="btn upload_image" @click="onPickFile">Upload Image</button>
 						<input 
@@ -39,8 +38,8 @@
 					<label>Phone</label>
 					<input type="text" class="form-control" v-model="phone">
 				</div>
-				<button class="btn btn_form"  v-on:click = "showdata" :disabled="done < info.length">Send Data</button>
-			</form>
+				<button class="btn btn_form"  v-on:click = "showdata">Send Data</button>
+			</div>
 		</div>
 
 

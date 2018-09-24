@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/vue"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<body>
+
+<div class="header">
+	<div class="circle"></div>
+	<p><span>swedavia</span><br>swedish airports</p>
+</div>
+		
+<div class="app">
+
+<div class="authorization">
+	<form id="form" v-on:submit.prevent="addUser">
+		<label>Username <i v-show="!validation.name" class="fas fa-exclamation-circle"></i></label>
+		<input type="text" v-model="newUser.name">
+		<label>Password <i v-show="!validation.password" class="fas fa-exclamation-circle"></i></label>
+		<input type="text" v-model="newUser.password">
+		<button class="btn_add" v-on:click="addUser(); showModal = true">Отправить</button>
+<!-- 		<button id="show-modal" @click="showModal = true">Show Modal</button>
+ -->		<modal v-if="showModal" v-bind="users" @close="showModal = false"></modal>
+	</form>
+</div>
+
+</div>
+
+<div class="cygate">
+	<p>Powered by <a href="#">Cygate</a></p>
+</div>
+
+
+<script>
+	var nameVal = /^(([a-zA-Z]{3,20}))$/
+	var passwordVal = /^(([0-9]+[a-zA-Z]{1,40}))$/
+	Vue.component('modal', {
+		props: ['user', 'hello'],
+		template: `<transition name="modal">
+  						<div class="modal-mask">
+   						<div class="modal-wrapper">
+      				<div class="modal-container">
+            	<a class="modal_close" @click="$emit('close')"><i class="fas fa-times"></i></a>
+
+            			<div class="users"><p>{{ user }} {{ hello }} </p></div>
+
+      				</div>
+    					</div>
+  						</div>
+							</transition>`,
+							
+						})
+			new Vue({
+				el: '.app',
+				data: {
+					newUser: {
+						name: '',
+						password: ''
+					},
+					users: [
+					{
+						user: '',
+						password: '',
+						hello: 'welcome to our swedish airports.',
+					}
+					],
+					showModal: false
+				},
+				computed: {
+					validation: function () {
+						return {
+							name: nameVal.test(this.newUser.name),
+							password: passwordVal.test(this.newUser.password)
+						}
+					},
+					isValid: function () {
+						var validation = this.validation
+						return Object.keys(validation).every(function (item) {
+							return validation[item]
+						})
+					}
+				},
+				methods: {
+					addUser: function () {
+						if (this.isValid) {
+							this.users.push({
+								user: this.newUser.name,
+								password: this.newUser.password,
+							});
+							this.newUser.name = "",
+							this.newUser.password = ""
+						}
+					}
+				}
+			})
+		</script>
+
+<style>
+body{
+	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
+	color: #444;
+	background-color: #F5F5F5;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 80px 20px;
+	margin: 0;
+	position: relative;
+}
+
+.app{
+	width: 464px;
+	margin: auto;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	padding: 16px 0px 37px 0;
+	background-color: #fff;
+	position: relative;
+	text-align: center;
+}
+
+.app:hover{
+	box-shadow: 0 0 19px rgba(0,0,0,0.3);
+	transition: all 0.4s ease;
+}
+
+.header{
+	width: 278px;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+.circle{
+	border-radius: 50px;
+	height: 85px;
+	width: 85px;
+	background-color: #cccccc;
+	float: left;
+}
+
+span{
+	font-weight: 600;
+	font-size: 32px;
+}
+
+.header p{
+	font-size: 18px;
+	line-height: 21px;
+	margin-left: 13px;
+	float: left;
+	color: #004485;
+	font-weight: 600;
+}
+
+label{
+	float: left;
+	margin: 0 0 8px 12px;
+}
+
+i{
+	color: #F95C5B;
+}
+
+input{
+	width: 418px;
+	font-size: 14px;
+	margin-bottom: 25px;
+	border-radius: 3px;
+	padding: 11px;
+	border: solid 1px #EEEEEE;
+}
+
+.btn_add {
+	background-color: #EC008D;
+	border-radius: 21px;
+	border: 0;
+	color: #fefefe;
+	border-color: #EC008D;
+	font-size: 14px;
+	padding: 7px 20px;
+	margin-left: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	float: left;
+}
+
+.btn_add:hover {
+	opacity: .8;
+	background-color: #EC008D;
+	border-color: #EC008D;
+}
+.btn_add:active {
+	opacity: .7;
+	background-color: #EC008D;
+	border-color: #EC008D;
+}
+
+a {
+	color: #9E9E9E;
+}
+
+.cygate {
+	text-align: center;
+	margin-top: 20px;
+}
+
+/*.....................modal........................*/
+.modal-mask {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	display: table;
+	transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.modal-container {
+	width: 300px;
+	min-height: 80px;
+	margin: 0px auto;
+	padding: 20px 30px;
+	background-color: #fff;
+	border-radius: 2px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+	transition: all .3s ease;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal_close  {
+	float: right;
+	font-size: 21px;
+	margin: -10px -18px 0px 0px;
+}
+
+.modal-leave-active {
+	opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.name{
+	background-color: #7A7A7A;
+  position: relative;
+  height: 40px;
+  margin-top: 50px;
+}
+
+.users{
+	margin-top: 28px;
+}
+</style>
+</body>
+</head>
+</html>

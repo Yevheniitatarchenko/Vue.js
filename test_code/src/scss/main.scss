@@ -1,0 +1,85 @@
+@import "_fonts";
+
+body {
+	margin: 0;
+	input, button {
+		border: #666 1px solid;
+		outline: none;
+	}
+}
+
+.img-responsive {
+	object-fit: cover;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.wrapper {
+	max-width: 1006px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.button {
+	border: none;
+	color: #1d1e25;
+	text-decoration: none;
+	background-color: #60e3a1;
+	border-radius: 3px;
+	padding: 16px 56px;
+	font-size: 16px;
+	font-family: 'Sofia Pro Regular';
+	text-align: center;
+	transition: all 0.2s;
+    &:focus, &:hover {
+			text-decoration: none;
+			color: #1d1e25;
+			opacity: 0.9;
+		}   
+    &:hover {
+			background-color: #60e3a1;	
+			opacity: 0.9;
+		}  
+}
+
+.button-img {
+	color: #1d1e25;
+	text-decoration: none;
+	background: transparent;
+	border-radius: 3px;
+	border: #60e3a1 1px solid;
+	padding: 22px 24px;
+	font-size: 16px;
+	font-family: 'Sofia Pro Regular';
+	text-align: center;
+	transition: all 0.2s;
+	&::before {
+		background-image: url(../assets/button.png);
+		content: "";
+		width: 10px;
+		height: 12px;
+		margin-top: 6px;
+    display: inline-block;
+    margin-right: 11px;
+    vertical-align: text-top;
+    background-position : center center;
+    background-repeat:no-repeat;
+	}  
+}
+
+.button-comment {
+	border: none;
+	text-decoration: underline;
+	padding: 0;
+}
+
+.edit {
+	background: transparent;
+	border: #60e3a1 1px solid;
+}
+
+
+
+@import "_media";

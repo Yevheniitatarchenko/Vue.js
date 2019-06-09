@@ -1,0 +1,143 @@
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	.footer {
+    padding-right: 50px;
+    padding-left: 25px;
+	}	
+
+	.menu_sm {
+		display: none;
+	}
+}
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.wrapper {
+    max-width: 903px;
+	}
+
+	.write {
+		flex-wrap: wrap;
+	}
+
+	.comment .write__form {
+    width: 76.7%!important;
+    margin-left: 0!important;
+    margin-top: 117px;
+	}
+
+	.content__text p {
+    font-size: 18px;
+	}
+
+	.content__contact p {
+    font-size: 19px;
+	}
+
+	.about .description {
+		flex-wrap: wrap;
+	}
+
+	.description__we {
+    width: 80%!important;
+		padding-left: 50px!important;
+		margin-bottom: 50px!important;
+	}
+
+	.description__do-content {
+    width: 100%!important;
+    padding-left: 50px!important;
+    margin-bottom: 50px!important;
+	}
+
+	.description__technology {
+    width: 80%!important;
+    padding-left: 50px!important;
+	}
+
+	.about {
+    padding-bottom: 110px;
+	}
+
+	.lorem__text h1 {
+    font-size: 67px;
+		line-height: 70px;
+	}
+	
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+	.lorem__text {
+    padding: 59px 143px 76px 51px!important;
+	}
+
+	.lorem__text h1 {
+    font-size: 47px!important;
+    line-height: 50px!important;
+	}
+
+	.comment .write {
+    padding-left: 50px;
+	}
+}
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	.lorem__text {
+    padding: 59px 35px 76px 45px!important;
+	}
+	.lorem__text h1 {
+    font-size: 38px!important;
+    line-height: 50px!important;
+	}
+
+	.content__contact p {
+		font-size: 14px;
+		margin-bottom: 4px!important;
+	}
+
+	.content__text p {
+    font-size: 16px!important;
+	}
+
+	.description__do {
+    width: 80%!important;
+	}	
+
+}
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+	.lorem__text h1 {
+    font-size: 21px !important;
+    line-height: 33px !important;
+	}
+
+	.description__do {
+    width: 80%!important;
+	}
+
+	.about {
+    background: #f7f7f7;
+    padding-top: 74px!important;
+	}
+
+	.comment {
+    padding-top: 87px!important;
+    padding-bottom: 83px!important;
+	}
+
+	.footer__content {
+		flex-wrap: wrap!important;
+	}
+
+	.form input {
+		width: 224px!important;
+	}
+}

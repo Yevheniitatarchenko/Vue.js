@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'Sofia Pro Medium';
+	src: local('../fonts/Sofia Pro Medium'), local('Sofia-Pro-Medium'),
+			url('../fonts/SofiaProMedium/SofiaProMedium.woff2') format('woff2'),
+			url('../fonts/SofiaProMedium/SofiaProMedium.woff') format('woff'),
+			url('../fonts/SofiaProMedium/SofiaProMedium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sofia Pro Semi Bold';
+	src: local('Sofia Pro Semi Bold'), local('Sofia-Pro-Semi-Bold'),
+			url('../fonts/SofiaProSemiBold/SofiaProSemiBold.woff2') format('woff2'),
+			url('../fonts/SofiaProSemiBold/SofiaProSemiBold.woff') format('woff'),
+			url('../fonts/SofiaProSemiBold/SofiaProSemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sofia Pro Bold';
+	src: local('../fonts/Sofia Pro Bold'), local('Sofia-Pro-Bold'),
+			url('../fonts/SofiaProBold/SofiaProBold.woff2') format('woff2'),
+			url('../fonts/SofiaProBold/SofiaProBold.woff') format('woff'),
+			url('../fonts/SofiaProBold/SofiaProBold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sofia Pro Regular';
+	src: local('../fonts/Sofia Pro Regular'), local('Sofia-Pro-Regular'),
+			url('../fonts/SofiaProRegular/SofiaProRegular.woff2') format('woff2'),
+			url('../fonts/SofiaProRegular/SofiaProRegular.woff') format('woff'),
+			url('../fonts/SofiaProRegular/SofiaProRegular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'OpenSans-SemiBold';
+	src: local('../fonts/OpenSans-SemiBold/Open Sans Semi Bold'), local('Open-Sans-Semi-Bold'),
+			url('../fonts/OpenSans-SemiBold/OpenSans-SemiBold.woff2') format('woff2'),
+			url('../fonts/OpenSans-SemiBold/OpenSans-SemiBold.woff') format('woff'),
+			url('../fonts/OpenSans-SemiBold/OpenSans-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AlrightSansMedium';
+	src: local('../fonts/AlrightSansMedium/AlrightSansMedium'), local('AlrightSansMedium');
+}
